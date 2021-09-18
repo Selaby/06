@@ -1,20 +1,17 @@
-import requests
 import urllib
 import pandas as pd
 import numpy as np
+from get_api import get_api
 
-def get_api(url:str, params:dict):
-    result = requests.get(url, params=params)
-    return result.json()
-
+URL = "https://app.rakuten.co.jp/services/api/Product/Search/20170426"
+APP_ID = "1065617872679994165"
 
 def search(keyword):
     params = {
     "keyword": keyword,
     "format": "json",
-    "applicationId": "1065617872679994165"
+    "applicationId": APP_ID
     }
-    url = "https://app.rakuten.co.jp/services/api/Product/Search/20170426"
 
     # 格納用のリスト
     item_name_list = []
@@ -22,7 +19,7 @@ def search(keyword):
     min_price_list = []
 
     # API取得用の関数
-    result = get_api(url, params=params)
+    result = get_api(URL, params)
 
     for item in result["Products"]:
         item_name = item["Product"]["productName"]
