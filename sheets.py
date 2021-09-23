@@ -29,6 +29,7 @@ def sheets(df: object):
     # 新しいワークシートを作成
     namae = str(datetime.datetime.now())
     worksheet = sh.add_worksheet(title=namae, rows=100, cols=100)
+    # ranking.pyだとA列は順位なのでちょっと不細工
     set_column_width(worksheet, 'A', 500)
 
     # 書き込みの始点となる行と列
@@ -36,22 +37,22 @@ def sheets(df: object):
     first_col = 1
     set_with_dataframe(worksheet, df, row=first_row, col=first_col)
 
-    # ヘッダー、インデックス、バリューの範囲を指定
-    header_range = "A1:B1"
+    # ヘッダー、インデックス、バリューの範囲を指定（課題ごとにカラム数が異なるので使わない）
+    # header_range = "A1:B1"
     # index_range = "B3:B8"
-    value_range = "A2:B31"
+    # value_range = "A2:B31"
 
     # ヘッダーの書式を設定
-    header_fmt = CellFormat(
-        backgroundColor = color(38/255, 166/255, 154/255),
-        textFormat = textFormat(bold=True, foregroundColor=color(255/255, 255/255, 255/255)),
-        horizontalAlignment = "CENTER"
-    )
-    format_cell_range(worksheet, header_range, header_fmt)
+    # header_fmt = CellFormat(
+    #     backgroundColor = color(38/255, 166/255, 154/255),
+    #     textFormat = textFormat(bold=True, foregroundColor=color(255/255, 255/255, 255/255)),
+    #     horizontalAlignment = "CENTER"
+    # )
+    # format_cell_range(worksheet, header_range, header_fmt)
 
     # 枠線を付ける
-    border = Border("SOLID", Color(0,0,0,0))
-    fmt = CellFormat(borders = Borders(top=border, bottom=border, left=border, right=border))
-    format_cell_range(worksheet, header_range, fmt)
-    # format_cell_range(worksheet, index_range, fmt)
-    format_cell_range(worksheet, value_range, fmt)
+    # border = Border("SOLID", Color(0,0,0,0))
+    # fmt = CellFormat(borders = Borders(top=border, bottom=border, left=border, right=border))
+    # format_cell_range(worksheet, header_range, fmt)
+    # # format_cell_range(worksheet, index_range, fmt)
+    # format_cell_range(worksheet, value_range, fmt)

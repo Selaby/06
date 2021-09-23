@@ -2,6 +2,7 @@ import urllib
 import pandas as pd
 import numpy as np
 from get_api import get_api
+from sheets import *
 
 URL = "https://app.rakuten.co.jp/services/api/Product/Search/20170426"
 APP_ID = "1065617872679994165"
@@ -54,10 +55,13 @@ def search(keyword):
 
     # csv出力
     # items_df.to_csv("product.csv", encoding="utf-8-sig")
-    df.to_csv("product.csv", encoding="utf-8-sig")
+    # df.to_csv("product.csv", encoding="utf-8-sig")
     # # log(f"処理完了 成功件数: {success} 件 / 失敗件数: {fail} 件")
-    print("csvファイルを出力しました")
+    # print("csvファイルを出力しました")
 
+    # スプレッドシート処理
+    sheets(df)
+    print("スプレッドシートに出力しました")
 
 if __name__ == "__main__":
     keyword = input("検索キーワードを入力してください >>> ")
