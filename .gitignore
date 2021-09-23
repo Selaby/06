@@ -1,2 +1,2 @@
-# venvフォルダを除外
 venv/
+secret.json

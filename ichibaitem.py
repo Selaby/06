@@ -2,6 +2,7 @@ import urllib
 import pandas as pd
 import numpy as np
 from get_api import get_api
+from sheets import *
 
 URL = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706"
 APP_ID = "1065617872679994165"
@@ -18,7 +19,7 @@ def search(keyword):
     # price = []
 
     # API取得用の関数
-    result = get_api(URL, params=params)
+    result = get_api(URL, params)
 
     # for文を回してdictを作る
     item_key = ["itemName", "itemPrice"]
@@ -42,9 +43,13 @@ def search(keyword):
     items_df.index = np.arange(1, len(items_df)+1)
 
     # csv出力
-    items_df.to_csv("ichibaitem.csv", encoding="utf-8-sig")
+    # items_df.to_csv("ichibaitem.csv", encoding="utf-8-sig")
     # # log(f"処理完了 成功件数: {success} 件 / 失敗件数: {fail} 件")
-    print("csvファイルを出力しました")
+    # print("csvファイルを出力しました")
+
+    # スプレッドシート処理
+    sheets(items_df)
+    print("スプレッドシートに出力しました")
 
 
 if __name__ == "__main__":
