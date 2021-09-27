@@ -9,14 +9,11 @@ APP_ID = "1065617872679994165"
 
 def search(keyword):
     params = {
-    "keyword": keyword,
+    "applicationId": APP_ID,
     "format": "json",
-    "applicationId": APP_ID
+    "formatVersion": 2,
+    "keyword": keyword
     }
-
-    # 格納用のリスト
-    # item_name = []
-    # price = []
 
     # API取得用の関数
     result = get_api(URL, params)
@@ -24,13 +21,11 @@ def search(keyword):
     # for文を回してdictを作る
     item_key = ["itemName", "itemPrice"]
     item_list = []
-    for i in range(0, len(result["Items"])):
+    for item in result["Items"]:
         tmp_item = {}
-        item = result["Items"][i]["Item"]
         for key, value in item.items():
             if key in item_key:
                 tmp_item[key] = value
-        # item_list.append(tmp_item.copy()) https://qiita.com/Massasquash/items/ed565b8ba4fd51dca54f .copyじゃないとうまくいかないらしいが何故かうまく行っている
         item_list.append(tmp_item)
 
     # リストをデータフレームに変換

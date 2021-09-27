@@ -9,9 +9,10 @@ APP_ID = "1065617872679994165"
 
 def search(genreId):
     params = {
-    "genreId": genreId,
+    "applicationId": APP_ID,
     "format": "json",
-    "applicationId": APP_ID
+    "formatVersion": 2,
+    "genreId": genreId 
     }
 
     # 格納用のリスト
@@ -22,10 +23,10 @@ def search(genreId):
     result = get_api(URL, params)
 
     for item in result["Items"]:
-        rank = item["Item"]["rank"]
+        rank = item["rank"]
         rank_list.append(rank)
 
-        item_name = item["Item"]["itemName"]
+        item_name = item["itemName"]
         item_name_list.append(item_name)
 
     # リストをデータフレームとして結合

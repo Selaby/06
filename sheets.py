@@ -5,6 +5,8 @@ from gspread_formatting.batch_update_requests import format_cell_range
 import pandas as pd
 from gspread_dataframe import set_with_dataframe
 from gspread_formatting import *
+import os
+from dotenv import load_dotenv
 
 def sheets(df: object):
     # 使用するAPI
@@ -21,8 +23,9 @@ def sheets(df: object):
 
     gc = gspread.authorize(credentials)
 
-    # スプシのURLからコピペ
-    SP_SHEET_KEY = "13Gw5gBgR9FTo__MhVaat7VQbbelt1-vC9q1ybLetY6o"
+    load_dotenv()
+    # 環境変数は外部ファイルに記載
+    SP_SHEET_KEY = os.environ['SP_SHEET_KEY']
 
     sh = gc.open_by_key(SP_SHEET_KEY)
 

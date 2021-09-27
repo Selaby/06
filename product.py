@@ -9,9 +9,10 @@ APP_ID = "1065617872679994165"
 
 def search(keyword):
     params = {
-    "keyword": keyword,
+    "applicationId": APP_ID,
     "format": "json",
-    "applicationId": APP_ID
+    "formatVersion": 2,
+    "keyword": keyword
     }
 
     # 格納用のリスト
@@ -23,13 +24,13 @@ def search(keyword):
     result = get_api(URL, params)
 
     for item in result["Products"]:
-        item_name = item["Product"]["productName"]
+        item_name = item["productName"]
         item_name_list.append(item_name)
 
-        max_price = item["Product"]["maxPrice"]
+        max_price = item["maxPrice"]
         max_price_list.append(max_price)
 
-        min_price = item["Product"]["minPrice"]
+        min_price = item["minPrice"]
         min_price_list.append(min_price)
     
     # リストをデータフレームとして結合
